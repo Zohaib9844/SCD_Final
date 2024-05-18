@@ -144,7 +144,7 @@ public class Romantic_Section implements ActionListener  {
     }
 
     private void showMovieInfoDialog(Movie movie) {
-        String message = "Movie: " + movie.name + "\n" + "Price: $" + movie.price + "\n" + "Rating: " + movie.rating + "\n";
+        String message = "Movie: " + movie.name + " \n " + "Price: $" + movie.price + " \n " + "Rating: " + movie.rating + " \n ";
 
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));

@@ -19,7 +19,6 @@ public class Project1  implements ActionListener {
     JLabel descLabel1;
     JLabel descLabel2;
     JLabel descLabel3;
-    JLabel descLabel4;
     JLabel moodLabel1;
     JLabel moodLabel2;
 
@@ -62,8 +61,8 @@ public class Project1  implements ActionListener {
         descLabel3 = createDescriptionLabel("movies recommendations for any mood or feeling.", 90, 290);
 
         //Mood descriptions
-        moodLabel1 = createMoodLabel("What's your Mood?",50, 50, 40);
-        moodLabel2 = createMoodLabel("(Select one of them according to your mood)",50, 70, 60);
+        moodLabel1 = createMoodLabel("What's your Mood?",50, 50, 30);
+        moodLabel2 = createMoodLabel("(Select one of them according to your mood)",50, 70, 20);
 
         happyButton = createButton("Happy", new Font("Bahnschrift", Font.BOLD, 20), new Color(0xfee2b3), new Color(0x1F0802));
         happyButton.setBounds(60, 200, 200, 50);
@@ -94,7 +93,7 @@ public class Project1  implements ActionListener {
         infoPanel.add(descLabel1);
         infoPanel.add(descLabel2);
         infoPanel.add(descLabel3);
-        infoPanel.add(descLabel4);
+
 
         buttonPanel = new JPanel();
         buttonPanel.setBackground(new Color(0xfee2b3));
@@ -166,7 +165,7 @@ public class Project1  implements ActionListener {
     }
 
     public static void main(String[] args) {
-        Project1 pro = new Project1();
+        new Project1();
     }
 
     @Override
@@ -178,7 +177,7 @@ public class Project1  implements ActionListener {
         if(e.getSource()==happyButton){
             frame.dispose();
             try {
-                Happy_Section hp1 = new Happy_Section();
+                new Happy_Section();
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
@@ -186,7 +185,7 @@ public class Project1  implements ActionListener {
         else if(e.getSource()==sadButton){
             frame.dispose();
             try {
-                Sad_Section hp1 = new Sad_Section();
+                new Sad_Section();
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
@@ -194,7 +193,7 @@ public class Project1  implements ActionListener {
         else if(e.getSource()==romanticButton){
             frame.dispose();
             try {
-                Romantic_Section hp1 = new Romantic_Section();
+                new Romantic_Section();
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
@@ -202,7 +201,7 @@ public class Project1  implements ActionListener {
         else if(e.getSource()==nostalgicButton){
             frame.dispose();
             try {
-                Nostalgic_Section hp1 = new Nostalgic_Section();
+                new Nostalgic_Section();
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }

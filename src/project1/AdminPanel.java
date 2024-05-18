@@ -70,8 +70,8 @@ public class AdminPanel  implements ActionListener {
         descriptionLabel3 = createDescriptionLabel("movies recommendations for any mood or feeling.", 90, 290);
 
         //Mood descriptions
-        moodLabel1 = createMoodLabel("What's your Mood?",50, 50, 40);
-        moodLabel2 = createMoodLabel("(Select one of them according to your mood)",50, 70, 60);
+        moodLabel1 = createMoodLabel("What's your Mood?",50, 50, 30);
+        moodLabel2 = createMoodLabel("(Select one of them according to your mood)",50, 70, 20);
 
         //Buttons
         happy = createMoodButton("happy", 60,200 );
