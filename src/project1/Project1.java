@@ -5,28 +5,29 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import javax.swing.*;
 public class Project1  implements ActionListener {
+    //Declaring variables
     JFrame frame;
-    JPanel panel1;
-    JPanel panel2;
-    JPanel panel2a;
-    JLabel heading1;
-    JLabel heading2;
-    JLabel heading3;
-    JLabel heading4;
-    JLabel heading5;
-    JLabel heading6;
-    JLabel heading7;
-    JLabel heading8;
 
-    JPanel panel2b;
+    JPanel welcomePanel;
+    JPanel bodyPanel;
+    JPanel infoPanel;
+    JPanel buttonPanel;
 
-    JButton happy;
-    JButton sad;
-    JButton romantic;
-    JButton nostalgic;
+    JLabel introLabel1;
+    JLabel introLabel2;
+    JLabel introLabel3;
+    JLabel descLabel1;
+    JLabel descLabel2;
+    JLabel descLabel3;
+    JLabel descLabel4;
+    JLabel moodLabel1;
+    JLabel moodLabel2;
 
-    JPanel panel4;
-    JLabel label1;
+    JButton happyButton;
+    JButton sadButton;
+    JButton romanticButton;
+    JButton nostalgicButton;
+    JButton backButton;
 
     Project1(){
         //FRAME
@@ -38,132 +39,143 @@ public class Project1  implements ActionListener {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //LABELS
-        label1 = new JLabel("WELCOME TO MOOD-MOVIE");
-        label1.setFont(new Font("Bahnschrift",Font.BOLD,72) );
-        label1.setForeground(new Color(0x1F0802));
+        introLabel1 = new JLabel("WELCOME TO MOOD-MOVIE");
+        introLabel1.setFont(new Font("Bahnschrift",Font.BOLD,72) );
+        introLabel1.setForeground(new Color(0x1F0802));
 
         //PANEL 1
-        panel1 = new JPanel();
-        panel1.setLayout(new FlowLayout(FlowLayout.CENTER,25,80));
-        panel1.setBounds(0,0,1400,210);
-        panel1.setBackground(new Color(0xfee2b3));
-        panel1.setOpaque(true);
-        panel1.add(label1);
+        welcomePanel = new JPanel();
+        welcomePanel.setLayout(new FlowLayout(FlowLayout.CENTER,25,80));
+        welcomePanel.setBounds(0,0,1400,210);
+        welcomePanel.setBackground(new Color(0xfee2b3));
+        welcomePanel.setOpaque(true);
+        welcomePanel.add(introLabel1);
 
-        heading1 = new JLabel("Movie");
-        heading1.setFont(new Font("Bahnschrift",Font.BOLD,40));
-        heading1.setBounds(90,40,300,60);
-        heading1.setForeground(new Color(0x1F0802));
+        //Main headings
+        introLabel1 = createIntroLabel("Watch", 90, 40);
+        introLabel2 = createIntroLabel("Movie by", 90, 90);
+        introLabel3 = createIntroLabel("Mood & Feeling", 90, 145);
 
-        heading2 = new JLabel("Suggestions by");
-        heading2.setFont(new Font("Bahnschrift",Font.BOLD,40));
-        heading2.setBounds(90,90,300,60);
-        heading2.setForeground(new Color(0x1F0802));
+        //Descriptions for the movie panel
+        descLabel1 = createDescriptionLabel("Dwell in any emotion. Tearfull sadness or absolute anger", 90, 225);
+        descLabel2 = createDescriptionLabel("driven horror? We got you covered with the very best", 90, 260);
+        descLabel3 = createDescriptionLabel("movies recommendations for any mood or feeling.", 90, 290);
 
-        heading3 = new JLabel("Mood & Feeling");
-        heading3.setFont(new Font("Bahnschrift",Font.BOLD,40));
-        heading3.setBounds(90,145,300,60);
-        heading3.setForeground(new Color(0x1F0802));
+        //Mood descriptions
+        moodLabel1 = createMoodLabel("What's your Mood?",50, 50, 40);
+        moodLabel2 = createMoodLabel("(Select one of them according to your mood)",50, 70, 60);
 
-        heading4 = new JLabel("Dwell in any emotion. Tearfull sadness or absolute anger");
-        heading4.setFont(new Font("Bahnschrift",Font.BOLD,20));
-        heading4.setBounds(90,225,600,60);
-        heading4.setForeground(new Color(0x1F0802));
+        happyButton = createButton("Happy", new Font("Bahnschrift", Font.BOLD, 20), new Color(0xfee2b3), new Color(0x1F0802));
+        happyButton.setBounds(60, 200, 200, 50);
+        happyButton.addActionListener(this);
 
-        heading5 = new JLabel("driven horror? We got you covered with the very best");
-        heading5.setFont(new Font("Bahnschrift",Font.BOLD,20));
-        heading5.setBounds(90,260,600,60);
-        heading5.setForeground(new Color(0x1F0802));
 
-        heading6 = new JLabel("movies recommendations for any mood or feeling.");
-        heading6.setFont(new Font("Bahnschrift",Font.BOLD,20));
-        heading6.setBounds(90,290,600,60);
-        heading6.setForeground(new Color(0x1F0802));
+        sadButton = createButton("Sad", new Font("Bahnschrift", Font.BOLD, 20), new Color(0xfee2b3), new Color(0x1F0802));
+        sadButton.setBounds(360,200,200,50);
+        sadButton.addActionListener(this);
+        sadButton.setFocusable(false);
 
-        heading7 = new JLabel("What's your Mood?");
-        heading7.setFont(new Font("Bahnschrift",Font.BOLD,40));
-        heading7.setBounds(50,50,400,60);
-        heading7.setForeground(new Color(0x1F0802));
+        romanticButton = createButton("Romantic", new Font("Bahnschrift", Font.BOLD, 20), new Color(0xfee2b3), new Color(0x1F0802));
+        romanticButton.setBounds(60,320,200,50);
+        romanticButton.addActionListener(this);
+        romanticButton.setFocusable(false);
 
-        heading8 = new JLabel("(Select one of them according to your mood)");
-        heading8.setFont(new Font("Bahnschrift",Font.BOLD,18));
-        heading8.setBounds(50,70,500,60);
-        heading8.setForeground(new Color(0x1F0802));
+        nostalgicButton = createButton("Nostalgic", new Font("Bahnschrift", Font.BOLD, 20), new Color(0xfee2b3), new Color(0x1F0802));
+        nostalgicButton.setBounds(360,320,200,50);
+        nostalgicButton.addActionListener(this);
+        nostalgicButton.setFocusable(false);
 
-        happy = new JButton("Happy");
-        happy.setBounds(60,200,200,50);
-        happy.setFont(new Font("Bahnschrift",Font.BOLD,20));
-        happy.setForeground(new Color(0xfee2b3));
-        happy.setBackground(new Color(0x1F0802));
-        happy.addActionListener(this);
-        happy.setFocusable(false);
+        infoPanel = new JPanel();
+        infoPanel.setBackground(new Color(0xfee2b3));
+        infoPanel.setOpaque(true);
+        infoPanel.setLayout(null);
+        infoPanel.add(introLabel2);
+        infoPanel.add(introLabel3);
+        infoPanel.add(descLabel1);
+        infoPanel.add(descLabel2);
+        infoPanel.add(descLabel3);
+        infoPanel.add(descLabel4);
 
-        sad = new JButton("Sad");
-        sad.setFont(new Font("Bahnschrift",Font.BOLD,20));
-        sad.setBounds(360,200,200,50);
-        sad.setForeground(new Color(0xfee2b3));
-        sad.setBackground(new Color(0x1F0802));
-        sad.addActionListener(this);
-        sad.setFocusable(false);
+        buttonPanel = new JPanel();
+        buttonPanel.setBackground(new Color(0xfee2b3));
+        buttonPanel.setOpaque(true);
+        buttonPanel.setLayout(null);
+        buttonPanel.add(moodLabel1);
+        buttonPanel.add(moodLabel2);
+        buttonPanel.add(happyButton);
+        buttonPanel.add(sadButton);
+        buttonPanel.add(romanticButton);
+        buttonPanel.add(nostalgicButton);
 
-        romantic = new JButton("Romantic");
-        romantic.setFont(new Font("Bahnschrift",Font.BOLD,20));
-        romantic.setBounds(60,320,200,50);
-        romantic.setForeground(new Color(0xfee2b3));
-        romantic.setBackground(new Color(0x1F0802));
-        romantic.addActionListener(this);
-        romantic.setFocusable(false);
+        bodyPanel = new JPanel();
+        bodyPanel.setLayout(new GridLayout(1,2));
+        bodyPanel.setBounds(0,200,1400,680);
+        bodyPanel.setBackground(new Color(0xfee2b3));
+        bodyPanel.setOpaque(true);
+        bodyPanel.add(infoPanel);
+        bodyPanel.add(buttonPanel);
 
-        nostalgic = new JButton("Nostalgic");
-        nostalgic.setFont(new Font("Bahnschrift",Font.BOLD,20));
-        nostalgic.setBounds(360,320,200,50);
-        nostalgic.setForeground(new Color(0xfee2b3));
-        nostalgic.setBackground(new Color(0x1F0802));
-        nostalgic.addActionListener(this);
-        nostalgic.setFocusable(false);
+        backButton = new JButton("Back");
+        backButton.setFont(new Font("Bahnschrift", Font.BOLD, 20));
+        backButton.setForeground(new Color(0xfee2b3));
+        backButton.setBackground(new Color(0x1F0802));
+        backButton.setBounds(300,600,140,40);
+        backButton.addActionListener(this);
+        backButton.setFocusable(false);
 
-        panel2a = new JPanel();
-        panel2a.setBackground(new Color(0xfee2b3));
-        panel2a.setOpaque(true);
-        panel2a.setLayout(null);
-        panel2a.add(heading1);
-        panel2a.add(heading2);
-        panel2a.add(heading3);
-        panel2a.add(heading4);
-        panel2a.add(heading5);
-        panel2a.add(heading6);
-
-        panel2b = new JPanel();
-        panel2b.setBackground(new Color(0xfee2b3));
-        panel2b.setOpaque(true);
-        panel2b.setLayout(null);
-        panel2b.add(heading7);
-        panel2b.add(heading8);
-        panel2b.add(happy);
-        panel2b.add(sad);
-        panel2b.add(romantic);
-        panel2b.add(nostalgic);
-
-        panel2 = new JPanel();
-        panel2.setLayout(new GridLayout(1,2));
-        panel2.setBounds(0,200,1400,680);
-        panel2.setBackground(new Color(0xfee2b3));
-        panel2.setOpaque(true);
-        panel2.add(panel2a);
-        panel2.add(panel2b);
-
-        frame.add(panel1);
-        frame.add(panel2);
+        frame.add(backButton);
+        frame.add(welcomePanel);
+        frame.add(bodyPanel);
         frame.setVisible(true);
 
     }
+
+    private JLabel createIntroLabel(String text, int x, int y) {
+        JLabel label = new JLabel(text);
+        label.setFont(new Font("Bahnschrift", Font.BOLD, 40));
+        label.setBounds(x, y, 300, 60);
+        label.setForeground(new Color(0x1F0802));
+        return label;
+    }
+
+    // Extracted methods for description labels
+    private JLabel createDescriptionLabel(String text, int x, int y) {
+        JLabel label = new JLabel(text);
+        label.setFont(new Font("Bahnschrift", Font.BOLD, 20));
+        label.setBounds(x, y, 600, 60);
+        label.setForeground(new Color(0x1F0802));
+        return label;
+    }
+
+    private JLabel createMoodLabel(String text, int x, int y, int fontSize) {
+        JLabel label = new JLabel(text);
+        label.setFont(new Font("Bahnschrift", Font.BOLD, fontSize));
+        label.setBounds(x, y, 500, 60); // Adjust width if needed
+        label.setForeground(new Color(0x1F0802));
+        return label;
+    }
+
+
+    private JButton createButton(String text, Font font, Color foregroundColor, Color backgroundColor) {
+        JButton button = new JButton(text);
+        button.setFont(font);
+        button.setForeground(foregroundColor);
+        button.setBackground(backgroundColor);
+        button.setFocusable(false);
+        return button;
+    }
+
     public static void main(String[] args) {
         Project1 pro = new Project1();
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource()==happy){
+        if(e.getSource()==backButton){
+            frame.dispose();
+            new Login().setVisible(true);
+        }
+        if(e.getSource()==happyButton){
             frame.dispose();
             try {
                 Happy_Section hp1 = new Happy_Section();
@@ -171,7 +183,7 @@ public class Project1  implements ActionListener {
                 ioException.printStackTrace();
             }
         }
-        else if(e.getSource()==sad){
+        else if(e.getSource()==sadButton){
             frame.dispose();
             try {
                 Sad_Section hp1 = new Sad_Section();
@@ -179,7 +191,7 @@ public class Project1  implements ActionListener {
                 ioException.printStackTrace();
             }
         }
-        else if(e.getSource()==romantic){
+        else if(e.getSource()==romanticButton){
             frame.dispose();
             try {
                 Romantic_Section hp1 = new Romantic_Section();
@@ -187,7 +199,7 @@ public class Project1  implements ActionListener {
                 ioException.printStackTrace();
             }
         }
-        else if(e.getSource()==nostalgic){
+        else if(e.getSource()==nostalgicButton){
             frame.dispose();
             try {
                 Nostalgic_Section hp1 = new Nostalgic_Section();

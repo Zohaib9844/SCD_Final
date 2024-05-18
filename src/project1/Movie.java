@@ -1,5 +1,7 @@
 package project1;
-
+/**
+ * Represents a movie object with its details.
+ */
 public class Movie {
     int id;
     String name;

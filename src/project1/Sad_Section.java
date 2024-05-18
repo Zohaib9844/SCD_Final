@@ -12,34 +12,27 @@ import java.io.PrintWriter;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Sad_Section implements ActionListener  {
-    JFrame f1;
-    JPanel p1, buttonPanel; // New panel for buttons
-    private ArrayList<Movie> movies;
+    //Declaring variables
+    JFrame frame;
 
-    JButton btn1;
-    JButton btn2;
-    JButton btn3;
-    JButton btn4;
-    JButton btn5;
-    JButton btn6;
+    JPanel bodyPanel, buttonPanel; // New panel for buttons
+    JLabel descLabel1;
+    JLabel descLabel2;
+    JLabel descLabel3;
+    JLabel descLabel4;
+    JLabel descLabel5;
+    JLabel descLabel6;
+    JLabel buttonLabel;
+
     JButton back;
-
-    JLabel label1;
-    JLabel label2;
-    JLabel label3;
-    JLabel label4;
-    JLabel label5;
-    JLabel label6;
-    JLabel label7;
 
     public ArrayList<Movie> readMovieData(String fileName) throws IOException {
         ArrayList<Movie> movies = new ArrayList<>();
         BufferedReader reader = new BufferedReader(new FileReader(fileName));
         String line;
+        // Populates an ArrayList of Movie objects from the given file
         while ((line = reader.readLine()) != null) {
             String[] data = line.split(" "); // Split by space
             Movie movie = new Movie();
@@ -55,53 +48,26 @@ public class Sad_Section implements ActionListener  {
         return movies;
     }
     Sad_Section() throws IOException {
-        f1 = new JFrame("HAPPY");
-        f1.setSize(1400,760);
-        f1.setLocationRelativeTo(null);
-        f1.setResizable(false);
-        f1.setLayout(null);
-        f1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame = new JFrame("HAPPY");
+        frame.setSize(1400,760);
+        frame.setLocationRelativeTo(null);
+        frame.setResizable(false);
+        frame.setLayout(null);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        label1 = new JLabel("Movies for Happy Mood");
-        label1.setFont(new Font("Bahnschrift",Font.BOLD,40));
-        label1.setBounds(500,40,600,60);
-        label1.setForeground(new Color(0x1F0802));
-
-        label2 = new JLabel("(click the Movie button which one you wanna watch)");
-        label2.setFont(new Font("Bahnschrift",Font.BOLD,20));
-        label2.setBounds(480,80,800,60);
-        label2.setForeground(new Color(0x1F0802));
-
-        label3 = new JLabel("Find the best funny movies to watch,");
-        label3.setFont(new Font("Bahnschrift",Font.BOLD,25));
-        label3.setBounds(80,250,800,60);
-        label3.setForeground(new Color(0x1F0802));
-
-        label4 = new JLabel("from our mood category.");
-        label4.setFont(new Font("Bahnschrift",Font.BOLD,25));
-        label4.setBounds(80,300,800,60);
-        label4.setForeground(new Color(0x1F0802));
-
-        label5 = new JLabel("Like everything on agoodmovietowatch,");
-        label5.setFont(new Font("Bahnschrift",Font.BOLD,25));
-        label5.setBounds(80,350,800,60);
-        label5.setForeground(new Color(0x1F0802));
-
-        label6 = new JLabel(" these funny movies are highly-rated by viewers.");
-        label6.setFont(new Font("Bahnschrift",Font.BOLD,25));
-        label6.setBounds(80,400,800,60);
-        label6.setForeground(new Color(0x1F0802));
-
-        label7 = new JLabel("(Suggestions)");
-        label7.setFont(new Font("Bahnschrift",Font.BOLD,34));
-        label7.setBounds(840,170,800,60);
-        label7.setForeground(new Color(0x1F0802));
+        descLabel1 = createLabel("Movies for Sad Mood", new Font("Bahnschrift",Font.BOLD,40),new Color(0x1F0802) , 500,40, 600, 60);
+        descLabel2 = createLabel("(click the Movie button which one you wanna watch)", new Font("Bahnschrift",Font.BOLD,20),new Color(0x1F0802) , 480,80, 800, 60);
+        descLabel3 = createLabel("Find the best Sad movies to watch,", new Font("Bahnschrift",Font.BOLD,25),new Color(0x1F0802) , 80,250, 800, 60);
+        descLabel4 = createLabel("from our mood category.", new Font("Bahnschrift",Font.BOLD,25),new Color(0x1F0802) , 80,300, 800, 60);
+        descLabel5 = createLabel("Like everything on agoodmovietowatch,", new Font("Bahnschrift",Font.BOLD,25),new Color(0x1F0802) , 80,350, 800, 60);
+        descLabel6 = createLabel(" these depressing movies are highly-rated by viewers.", new Font("Bahnschrift",Font.BOLD,25),new Color(0x1F0802) , 80,400, 800, 60);
+        buttonLabel = createLabel("(Suggestions)", new Font("Bahnschrift",Font.BOLD,34),new Color(0x1F0802) , 840,170, 800, 60);
 
         buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(2, 3, 10, 10)); // 2x3 grid layout for buttons
         buttonPanel.setBounds(850, 260, 500, 200);
 
-        ArrayList<Movie> movies = readMovieData("sadMovies.txt"); // Replace with your file name
+        ArrayList<Movie> movies = readMovieData("sadMovies.txt");
         for (Movie movie : movies) {
             JButton button = new JButton(movie.name);
             button.setFont(new Font("Bahnschrift", Font.BOLD, 16));
@@ -120,22 +86,22 @@ public class Sad_Section implements ActionListener  {
         back.setFocusable(false);
         back.addActionListener(this);
 
-        p1 = new JPanel();
-        p1.setLayout(null);
-        p1.setBounds(0,0,1400,760);
-        p1.setBackground(new Color(0xfee2b3));
-        p1.setOpaque(true);
-        p1.add(buttonPanel);
-        p1.add(label1);
-        p1.add(label2);
-        p1.add(label3);
-        p1.add(label4);
-        p1.add(label5);
-        p1.add(label6);
-        p1.add(label7);
-        p1.add(back);
-        f1.add(p1);
-        f1.setVisible(true);
+        bodyPanel = new JPanel();
+        bodyPanel.setLayout(null);
+        bodyPanel.setBounds(0,0,1400,760);
+        bodyPanel.setBackground(new Color(0xfee2b3));
+        bodyPanel.setOpaque(true);
+        bodyPanel.add(buttonPanel);
+        bodyPanel.add(descLabel1);
+        bodyPanel.add(descLabel2);
+        bodyPanel.add(descLabel3);
+        bodyPanel.add(descLabel4);
+        bodyPanel.add(descLabel5);
+        bodyPanel.add(descLabel6);
+        bodyPanel.add(buttonLabel);
+        bodyPanel.add(back);
+        frame.add(bodyPanel);
+        frame.setVisible(true);
 
     }
 
@@ -159,12 +125,20 @@ public class Sad_Section implements ActionListener  {
             // Show movie information dialog
             showMovieInfoDialog(selectedMovie);
         } else if (e.getSource() == back) {
-            f1.dispose();
+            frame.dispose();
             Project1 pro = new Project1();
         } else {
             System.out.println("Invalid Action-Performed");
         }
 
+    }
+
+    private JLabel createLabel(String text, Font font, Color color, int x, int y, int width, int height) {
+        JLabel label = new JLabel(text); // Center alignment
+        label.setFont(font);
+        label.setForeground(color);
+        label.setBounds(x, y, width, height);
+        return label;
     }
 
     private void showMovieInfoDialog(Movie movie) {
@@ -184,7 +158,7 @@ public class Sad_Section implements ActionListener  {
         panel.add(purchaseButton);
         panel.add(watchTrailerButton);
 
-        int option = JOptionPane.showConfirmDialog(f1, panel, "Movie Info",
+        int option = JOptionPane.showConfirmDialog(frame, panel, "Movie Info",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE);
 
         // Handle button clicks based on option (not needed in this case)
@@ -198,10 +172,9 @@ public class Sad_Section implements ActionListener  {
         if (confirmation == JOptionPane.YES_OPTION) {
             if (deleteMovieFromFile(movie)) {  // Call deleteMovieFromFile and handle return value
 //                JOptionPane.showMessageDialog(null, movie.name + " removed successfully!");
-                f1.dispose();
+                frame.dispose();
                 try {
-                    new Happy_Section();
-
+                    new Sad_Section();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

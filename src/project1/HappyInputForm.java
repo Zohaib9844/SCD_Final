@@ -5,9 +5,9 @@ import java.awt.event.*;
 import java.io.*;
 import javax.swing.*;
 
-public class HappyInputForm extends JFrame implements ActionListener {
+class AdminInputForm extends JFrame implements ActionListener {
 
-    private static final String FILE_NAME = "happyMovies.txt"; // Change this if your file name is different
+    private static  String FILE_NAME ;
 
     private int nextID;
 
@@ -16,9 +16,9 @@ public class HappyInputForm extends JFrame implements ActionListener {
     private JTextField movieNameField, moviePriceField, movieRatingField, movieTrailerField;
     private JButton submitButton, backButton;
 
-    public HappyInputForm() throws IOException {
+    AdminInputForm(String Rawdata) throws IOException {
         super("Movie Input Form");
-
+    FILE_NAME = Rawdata;
         // Get the latest ID from the movie file
         nextID = getLatestID();
 
@@ -165,7 +165,7 @@ public class HappyInputForm extends JFrame implements ActionListener {
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME, true))) {
                 writer.write(nextID + " " + movieName + " " + moviePrice + " " + movieRating + " " + movieTrailerLink);
                 writer.newLine();
-                nextID++; // Increment nextID for the next entry
+                nextID++;
 
                 JOptionPane.showMessageDialog(this, "Movie information added successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
 
@@ -183,7 +183,7 @@ public class HappyInputForm extends JFrame implements ActionListener {
 
     public static void main(String[] args) {
         try {
-            HappyInputForm form = new HappyInputForm();
+            AdminInputForm form = new AdminInputForm(FILE_NAME);
             form.setVisible(true);
         } catch (IOException e) {
             e.printStackTrace();

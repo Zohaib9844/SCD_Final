@@ -58,7 +58,7 @@ public class Login extends JFrame implements ActionListener {
         guestButton.setBackground(new Color(0x1F0802));
         guestButton.setBounds(250, 170, 100, 30);
         guestButton.addActionListener(this);
-        add(submitButton); // This button was added twice, corrected here.
+        add(submitButton);
         add(guestButton);
     }
 
